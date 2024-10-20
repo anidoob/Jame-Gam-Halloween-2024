@@ -13,7 +13,7 @@ public class MazeGenerator : MonoBehaviour
     MazeCell[,] maze;
 
     Vector2Int currentCell;
-    public void Start()
+    public MazeCell[,] GetMaze()
     {
         maze = new MazeCell[mazeWidth, mazeHeight]; //Create a new maze with the given dimensions
 
@@ -24,6 +24,9 @@ public class MazeGenerator : MonoBehaviour
                 maze[x, y] = new MazeCell(x, y); //Create MazeCell for each position in the maze
             }
         }
+
+        carvePath(startX, startY); //Start the algorithm at the given position
+        return maze; //Return the maze
     }
     List<Direction> directions = new List<Direction>
     {
@@ -115,9 +118,53 @@ public class MazeGenerator : MonoBehaviour
             x = y = 0;
             Debug.Log("Invalid starting coordinates for carving path");
         }
+
+        currentCell = new Vector2Int(x, y);
+
+        List<Vector2Int> path = new List<Vector2Int>();
+
+        bool deadEnd = false;
+
+        while (!deadEnd)
+        {
+            Vector2Int nextCell = CheckNeighbour();
+
+            if(nextCell == currentCell)
+            {
+                for(int i = path.Count - 1; i >= 0; i--)
+                {
+                   currentCell = path[i];
+                    path.RemoveAt(i);
+                    nextCell = CheckNeighbour();
+
+                    if (nextCell != currentCell)
+                        break;
+                }
+                if (nextCell == currentCell)
+                    deadEnd = true;
+            }
+            else
+            {
+                BreakWalls(currentCell, nextCell);
+                maze[currentCell.x, currentCell.y].visited = true;
+                currentCell = nextCell;
+                path.Add(currentCell);
+            }
+        }
+
     }
 
-public enum Direction
+    /*Potentially add a method to search for unvisited cells and call carvePath on them
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     */
+    public enum Direction
     {
         Up,
         Down,
