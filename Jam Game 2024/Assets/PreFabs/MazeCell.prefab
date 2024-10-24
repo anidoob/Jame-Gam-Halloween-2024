@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6299858044563593713}
   - component: {fileID: 2759108105217762123}
   - component: {fileID: 4003063226188627418}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7531770903291618934
 Transform:
   m_ObjectHideFlags: 0
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 8526380223191654550}
   - component: {fileID: 2501014278097530524}
   - component: {fileID: 4636496408893192678}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 6447832506846900651}
   - component: {fileID: 2887000309997241507}
   - component: {fileID: 7259893396049242510}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,7 +487,7 @@ GameObject:
   - component: {fileID: 1803073062314958317}
   - component: {fileID: 5605215141931833581}
   - component: {fileID: 7468473837163136206}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BottomWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -592,7 +592,7 @@ GameObject:
   - component: {fileID: 1932218660630379861}
   - component: {fileID: 5513368985088560019}
   - component: {fileID: 7054800048012041656}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TopWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

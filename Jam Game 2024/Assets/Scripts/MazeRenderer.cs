@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class MazeRenderer : MonoBehaviour
@@ -11,7 +12,7 @@ public class MazeRenderer : MonoBehaviour
 
     private void Start()
     {
-       MazeGenerator.MazeCell[,] maze = mazeGenerator.GetMaze();
+        MazeGenerator.MazeCell[,] maze = mazeGenerator.GetMaze();
 
        for (int x = 0; x < mazeGenerator.mazeWidth; x++){
             for (int y = 0; y < mazeGenerator.mazeHeight; y++){
@@ -35,5 +36,7 @@ public class MazeRenderer : MonoBehaviour
                 mazeCell.initialize(top, bottom, left, right);
             }
         }
+        GetComponent<NavMeshSurface>().BuildNavMesh();
     }
+    
 }
