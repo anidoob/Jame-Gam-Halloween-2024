@@ -30,6 +30,8 @@ public class playermovement : MonoBehaviour
     Animator animator;
     private bool canMove = true;
 
+    [SerializeField]private GameManager gameManager;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -116,10 +118,14 @@ public class playermovement : MonoBehaviour
     {
         while (currentTemp > 0)
         {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(5);
             currentTemp--;
             temp.SetTemp(currentTemp);
 
+            if(currentTemp == 0)
+            {
+                gameManager.EndGame();
+            }
             Debug.Log("Temp: " + currentTemp);
         }
     }
