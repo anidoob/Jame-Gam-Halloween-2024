@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
 
     public void CompleteLevel()
     {
-        
-        Invoke("BackToMenu", 5f);
+        Debug.Log("Completed");
+        //Invoke("BackToMenu", 5f);
 
     }
 

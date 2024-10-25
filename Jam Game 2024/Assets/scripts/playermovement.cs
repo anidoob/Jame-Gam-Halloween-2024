@@ -6,8 +6,8 @@ using UnityEngine;
 public class playermovement : MonoBehaviour
 {
     public Camera playerCamera;
-    public float walkSpeed = 6f;
-    public float runSpeed = 12f;
+    public float walkSpeed = 3f;
+    public float runSpeed = 5f;
     public float jumpPower = 7f;
     public float gravity = 10f;
     public float lookSpeed = 2f;
@@ -118,7 +118,7 @@ public class playermovement : MonoBehaviour
     {
         while (currentTemp > 0)
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(7);
             currentTemp--;
             temp.SetTemp(currentTemp);
 

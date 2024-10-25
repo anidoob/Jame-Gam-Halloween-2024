@@ -293,6 +293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 405974285}
   - component: {fileID: 405974286}
+  - component: {fileID: 405974287}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -330,6 +331,20 @@ MonoBehaviour:
   restartDelay: 1
   successUI: {fileID: 0}
   failureUI: {fileID: 0}
+--- !u!114 &405974287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405974284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50f777bc8ce440347bc723f00379b10f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taggedObjects: []
+  manager: {fileID: 405974286}
 --- !u!4 &526122983 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 63fdb230e35611141b18195fb2be42ae, type: 3}
@@ -794,6 +809,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1177157045}
   - component: {fileID: 1177157046}
+  - component: {fileID: 1177157047}
   m_Layer: 7
   m_Name: Point Light
   m_TagString: Untagged
@@ -810,7 +826,7 @@ Transform:
   m_GameObject: {fileID: 1177157044}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.492, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -828,9 +844,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.9528302, g: 0.9053297, b: 0.73260057, a: 1}
-  m_Intensity: 3
-  m_Range: 52
-  m_SpotAngle: 23.2
+  m_Intensity: 1
+  m_Range: 40
+  m_SpotAngle: 41
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
@@ -878,6 +894,19 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1177157047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177157044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f434f54bc28c7ff46b502c8fcc209dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 1637317484}
 --- !u!1 &1246730337
 GameObject:
   m_ObjectHideFlags: 0
@@ -5932,7 +5961,7 @@ Transform:
   m_GameObject: {fileID: 1496817500}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.684, y: 0, z: 0.252}
+  m_LocalPosition: {x: -0.026, y: 0.337, z: 0.434}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

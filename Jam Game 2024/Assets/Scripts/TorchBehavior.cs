@@ -5,7 +5,7 @@ using UnityEngine;
 public class TorchBehavior : MonoBehaviour, IInteractable
 {
     private GameObject player;
-    private bool activated;
+    public bool activated;
     [SerializeField] private ParticleSystem flame;
 
 
