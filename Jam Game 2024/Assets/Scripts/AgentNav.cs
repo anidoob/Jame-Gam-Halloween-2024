@@ -1,38 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class NewBehaviourScript : MonoBehaviour
 {
     [SerializeField]
-    private Vector3 destPoint;
-    private AwarenessOfPlayer AwarenessOfPlayer;
-    private NavMeshAgent agent;
+    private float sightRange, attackRange;
+    private float cellSize;
+
+    private bool canSeePlayer, canAtkPlayer;
     private bool hasWalkPoint;
-    private GameObject Maze;
+
+    private NavMeshAgent agent;
+    private GameObject Maze, player;
     private MazeGenerator MazeGen;
     private MazeRenderer MazeRenderer;
-    public LayerMask groundLayer;
 
-    private float xRange;
-    private float zRange;
-    private float cellSize;
+    public LayerMask groundLayer, playerLayer;
+
+    private Vector3 destPoint;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         Maze = GameObject.Find("Maze");
+        player = GameObject.Find("Player");
         MazeGen = Maze.GetComponent<MazeGenerator>();
         MazeRenderer = Maze.GetComponent<MazeRenderer>();
         cellSize = MazeRenderer.CellSize;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (AwarenessOfPlayer.awareofPlayer)
+        canSeePlayer = Physics.CheckSphere(transform.position, sightRange, playerLayer);
+        if (canSeePlayer)
+        {
+            Chase();
+        }
+        else 
+        {
             Patrol();
+        }
         
     }
 
@@ -53,11 +65,16 @@ public class NewBehaviourScript : MonoBehaviour
     void searchforDestination()
     {
         
-        xRange = Random.Range(MazeGen.startX, cellSize * MazeGen.mazeWidth);
-        zRange = Random.Range(MazeGen.startY, cellSize * MazeGen.mazeHeight);
+        float xRange = Random.Range(MazeGen.startX, cellSize * MazeGen.mazeWidth);
+        float zRange = Random.Range(MazeGen.startY, cellSize * MazeGen.mazeHeight);
 
         destPoint = new Vector3(xRange, 0, zRange);
         if(Physics.Raycast(destPoint, Vector3.down, groundLayer))
             hasWalkPoint = true;
+    }
+
+    void Chase()
+    {
+        agent.SetDestination(player.transform.position);
     }
 }

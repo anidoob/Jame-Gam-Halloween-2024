@@ -6,7 +6,7 @@ public class headbob : MonoBehaviour
 {
     [Header("Configuration")]
     [SerializeField] private bool _enable = true;
-    [SerializeField, Range(0, 0.1f)] private float _Amplitude = 0.015f; [SerializeField, Range(0, 30)] private float _frequency = 10.0f;
+    [Range(0, 0.1f)] public float _Amplitude = 0.015f; [Range(0, 30)] public float _frequency = 10.0f;
     [SerializeField] private Transform _camera = null; [SerializeField] private Transform _cameraHolder = null;
 
     private float _toggleSpeed = 3.0f;

@@ -19,6 +19,7 @@ public class playermovement : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0;
     private CharacterController characterController;
+    
 
     Animator animator;
     private bool canMove = true;
