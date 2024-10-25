@@ -16,11 +16,13 @@ public class playermovement : MonoBehaviour
     public float crouchHeight = 1f;
     public float crouchSpeed = 3f;
 
-    private Vector3 moveDirection = Vector3.zero;
+    public Vector3 moveDirection = Vector3.zero;
+    public bool isRunning;
+    public bool isMoving;
     private float rotationX = 0;
     private CharacterController characterController;
     
-
+    private headbob headbob;
     Animator animator;
     private bool canMove = true;
 
@@ -30,6 +32,7 @@ public class playermovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         animator = GetComponent<Animator>();
+        headbob = GetComponent<headbob>();
     }
 
     void Update()
@@ -37,13 +40,18 @@ public class playermovement : MonoBehaviour
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
-        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        isRunning = Input.GetKey(KeyCode.LeftShift);
         float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
         float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        if (moveDirection != Vector3.zero)
+       if(moveDirection != Vector3.zero)
+            isMoving = true;
+        if (moveDirection == Vector3.zero)
+            isMoving = false;
+
+        if (isMoving)
         {
             animator.SetBool("isRun", false);
             animator.SetBool("isWalk", true);
