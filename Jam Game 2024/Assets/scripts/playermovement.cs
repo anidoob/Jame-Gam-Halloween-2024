@@ -21,6 +21,10 @@ public class playermovement : MonoBehaviour
     public bool isMoving;
     private float rotationX = 0;
     private CharacterController characterController;
+
+    public int maxTemp = 20;
+    public int currentTemp;
+    public TemperatureScript temp;
     
     private headbob headbob;
     Animator animator;
@@ -33,6 +37,9 @@ public class playermovement : MonoBehaviour
         Cursor.visible = false;
         animator = GetComponent<Animator>();
         headbob = GetComponent<headbob>();
+        currentTemp = maxTemp;
+        temp.setTempMax(maxTemp);
+        StartCoroutine(tempOverTime());
     }
 
     void Update()
@@ -102,6 +109,18 @@ public class playermovement : MonoBehaviour
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+        }
+    }
+
+    private IEnumerator tempOverTime()
+    {
+        while (currentTemp > 0)
+        {
+            yield return new WaitForSeconds(10);
+            currentTemp--;
+            temp.SetTemp(currentTemp);
+
+            Debug.Log("Temp: " + currentTemp);
         }
     }
 }
