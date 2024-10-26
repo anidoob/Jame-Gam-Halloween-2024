@@ -7,6 +7,7 @@ public class TorchBehavior : MonoBehaviour, IInteractable
     private GameObject player;
     public bool activated;
     [SerializeField] private ParticleSystem flame;
+    public AudioSource fire;
 
 
     void Start()
@@ -14,12 +15,14 @@ public class TorchBehavior : MonoBehaviour, IInteractable
         player = GameObject.FindWithTag("Player");
         flame.Stop();
         activated = false;
+        fire.enabled = false;
     }
 
     void Update()
     {
         if (activated && Vector3.Distance(player.transform.position, transform.position) <= 3)
         {
+            fire.enabled = true;
             if (player.GetComponent<playermovement>().currentTemp < player.GetComponent<playermovement>().maxTemp) {
                 player.GetComponent<playermovement>().currentTemp += 2;
                 if (player.GetComponent<playermovement>().currentTemp > player.GetComponent<playermovement>().maxTemp)
@@ -28,13 +31,8 @@ public class TorchBehavior : MonoBehaviour, IInteractable
 
 
         }
-    }
-
-    //IEnumerator AddHeat()
-    //{
-    //    yield return new WaitForSeconds(3);
         
-    //}
+    }
     public void Interact()
     {
         flame.Play();

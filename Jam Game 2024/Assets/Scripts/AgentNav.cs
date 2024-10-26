@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,6 +18,8 @@ public class NewBehaviourScript : MonoBehaviour
     private GameObject Maze, player;
     private MazeGenerator MazeGen;
     private MazeRenderer MazeRenderer;
+
+    [SerializeField]private GameManager GameManager;
 
     public LayerMask groundLayer, playerLayer;
 
@@ -76,5 +79,15 @@ public class NewBehaviourScript : MonoBehaviour
     void Chase()
     {
         agent.SetDestination(player.transform.position);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Caught!!!");
+            GameManager.EndGame();
+        }
     }
 }
