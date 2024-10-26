@@ -12,17 +12,18 @@ public class GameManager : MonoBehaviour
     {
         if (gameEnded == false)
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             gameEnded = true;
             Debug.Log("Game Over");
-            //Invoke("Restart", restartDelay);
+            Invoke("GameOver", restartDelay);
         }
 
     }
 
     public void CompleteLevel()
     {
-        Debug.Log("Completed");
-        //Invoke("BackToMenu", 5f);
+        Invoke("CompleteScreen", 1f);
 
     }
 
@@ -31,9 +32,14 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    void BackToMenu()
+    void GameOver()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene(3);
+    }
+
+    void CompleteScreen()
+    {
+        SceneManager.LoadScene(2);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }

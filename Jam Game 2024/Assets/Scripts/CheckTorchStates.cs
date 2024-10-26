@@ -7,17 +7,22 @@ public class CheckTorchStates : MonoBehaviour
     public List<GameObject> taggedObjects;
     private int activeCount;
     public GameManager manager;
+    private bool runOnce;
     void Start()
     {
         //taggedObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("Torch"));
         activeCount = 0;
-
+        runOnce = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        taggedObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("Torch"));
+        if (runOnce)
+        {
+            taggedObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("Torch"));
+            runOnce = false;
+        }
 
         for (int i = taggedObjects.Count - 1; i >= 0; i--)
         {

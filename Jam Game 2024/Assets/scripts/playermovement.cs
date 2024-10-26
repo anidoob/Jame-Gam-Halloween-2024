@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -25,15 +26,19 @@ public class playermovement : MonoBehaviour
     public int maxTemp = 20;
     public int currentTemp;
     public TemperatureScript temp;
-    
+
     private headbob headbob;
     Animator animator;
     private bool canMove = true;
+
+    public GameObject torch;
+    [SerializeField]private bool isOn;
 
     [SerializeField]private GameManager gameManager;
 
     void Start()
     {
+        
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -42,6 +47,8 @@ public class playermovement : MonoBehaviour
         currentTemp = maxTemp;
         temp.setTempMax(maxTemp);
         StartCoroutine(tempOverTime());
+
+        isOn = false;
     }
 
     void Update()
@@ -111,6 +118,21 @@ public class playermovement : MonoBehaviour
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!isOn)
+            {
+                torch.SetActive(true);
+                isOn = true;
+            }
+            else if (isOn)
+            {
+                torch.SetActive(false);
+                isOn = false;
+            }
+
         }
     }
 
